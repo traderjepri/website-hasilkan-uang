@@ -75,8 +75,7 @@
     <h1>Slot Machine</h1>
     <div class="slot-container">
       <div class="slot" id="slot1">🍎</div>
-      <div class="slot" id="slot2">🍒</div>
-      <div class="slot" id="slot3">🍌</div>
+      <div class="slot" id="slot2">🍎</div>
     </div>
     <button id="spinButton">Spin</button>
     <div class="result" id="result">Try your luck!</div>
@@ -88,10 +87,9 @@
     const spinButton = document.getElementById('spinButton');
     const slot1 = document.getElementById('slot1');
     const slot2 = document.getElementById('slot2');
-    const slot3 = document.getElementById('slot3');
     const result = document.getElementById('result');
     const balanceElement = document.getElementById('balance');
-    let balance = 100; // Initial balance
+    let balance = 1000; // Initial balance
 
     function getRandomSymbol() {
       return symbols[Math.floor(Math.random() * symbols.length)];
