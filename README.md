@@ -1,11 +1,9 @@
-# website-hasilkan-uang
-hasilkan uang
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slot Game</title>
+  <title>Slot Machine App</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,22 +11,23 @@ hasilkan uang
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background-color: #f5f5f5;
       margin: 0;
-      background-color: #f0f0f0;
     }
 
     .slot-machine {
       text-align: center;
       background-color: #333;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       color: white;
+      width: 320px;
     }
 
     .slot-container {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       margin: 20px 0;
     }
 
@@ -47,8 +46,8 @@ hasilkan uang
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 2px;
+      padding: 12px 24px;
+      font-size: 16px;
       background-color: #28a745;
       color: white;
       border: none;
@@ -64,18 +63,24 @@ hasilkan uang
       margin-top: 20px;
       font-size: 20px;
     }
+
+    .balance {
+      margin-top: 10px;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
   <div class="slot-machine">
-    <h1>Slot Game</h1>
+    <h1>Slot Machine</h1>
     <div class="slot-container">
       <div class="slot" id="slot1">🍎</div>
       <div class="slot" id="slot2">🍒</div>
       <div class="slot" id="slot3">🍌</div>
     </div>
     <button id="spinButton">Spin</button>
-    <div class="result" id="result">Spin to play!</div>
+    <div class="result" id="result">Try your luck!</div>
+    <div class="balance" id="balance">Balance: $100</div>
   </div>
 
   <script>
@@ -85,12 +90,27 @@ hasilkan uang
     const slot2 = document.getElementById('slot2');
     const slot3 = document.getElementById('slot3');
     const result = document.getElementById('result');
+    const balanceElement = document.getElementById('balance');
+    let balance = 100; // Initial balance
 
     function getRandomSymbol() {
       return symbols[Math.floor(Math.random() * symbols.length)];
     }
 
+    function updateBalance(amount) {
+      balance += amount;
+      balanceElement.textContent = `Balance: $${balance}`;
+    }
+
     function spinSlots() {
+      if (balance <= 0) {
+        result.textContent = "Insufficient funds! Please restart.";
+        return;
+      }
+
+      // Deduct $10 for a spin
+      updateBalance(-10);
+
       // Disable the spin button temporarily
       spinButton.disabled = true;
       result.textContent = "Spinning...";
@@ -104,6 +124,8 @@ hasilkan uang
         // Check for a win
         if (slot1.textContent === slot2.textContent && slot2.textContent === slot3.textContent) {
           result.textContent = "You win! 🎉";
+          // Reward $50 for winning
+          updateBalance(50);
         } else {
           result.textContent = "Try again! 😢";
         }
@@ -118,3 +140,4 @@ hasilkan uang
   </script>
 </body>
 </html>
+
