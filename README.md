@@ -48,7 +48,7 @@ hasilkan uang
 
     button {
       padding: 10px 20px;
-      font-size: 16px;
+      font-size: 2px;
       background-color: #28a745;
       color: white;
       border: none;
